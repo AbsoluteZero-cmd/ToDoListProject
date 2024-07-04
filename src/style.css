@@ -1,0 +1,269 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    color: #212121;
+}
+
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.section {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 25%;
+    background: #fcfaf8;
+    padding: 30px;
+}
+
+.sidebar__title {
+    margin-bottom: 20px;
+}
+
+.add_project__button {
+    display: block;
+
+    text-decoration: none;
+    color: #c23c2a;
+
+    position: relative;
+
+    font-weight: 600;
+
+    font-size: 16px;
+
+    transition: font-size linear 0.2s;
+}
+
+.add_project__button::before {
+    content: '+';
+    
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    
+    color: #fcfaf8;
+    font-size: 28px;
+
+    margin-right: 5px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    display: inline-block;
+    background: #df4b40;
+    border-radius: 50%;
+
+    transition: all linear 0.2s;
+}
+
+.add_project__button:hover {
+    font-size: 18px;
+}
+
+.add_project__button:hover.add_project__button::before{
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+
+    font-size: 30px;
+}
+
+.projects {
+    margin-top: 20px;
+}
+
+.project__item {
+    list-style-type: none;
+
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    margin-bottom: 5px;
+
+    transition: all linear 0.2s;
+}
+
+.project__item.project__item--selected {
+    background: #fff1e3;
+}
+
+.project__item.project__item--selected a {
+    text-decoration: none;
+    color: #c23c2a;
+    
+}
+
+.project__item:hover {
+    background: #fff1e3;
+}
+
+.project__item a {
+    text-decoration: none;
+    color: #212121;
+
+    transition: all linear 0.2s;
+}
+
+.project__item:hover a {
+    color: #c23c2a;
+}
+
+/* Todos */
+
+.todos {
+    width: 75%;
+    padding: 30px;
+}
+
+.todos hr {
+    border: 1px solid #eeeeee;
+
+    margin: 20px 0;
+}
+
+.todos__title {
+    margin-bottom: 20px;
+}
+
+/* .todos__form * {
+    display: block;
+} */
+
+.todos__form input,
+.sidebar input {
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    margin-bottom: 5px;
+}
+
+.add_todo__button {
+    display: block;
+
+    margin-left: 10px;
+
+
+    padding: 5px 20px 5px 10px;
+    border-radius: 5px;
+
+    display: inline-block;
+    border: 1px solid #eeeeee;
+
+    margin-top: 10px;
+
+    text-decoration: none;
+    color: #bbbbbb;
+
+    position: relative;
+
+
+    font-size: 16px;
+    font-weight: 400;
+
+    transition: font-size linear 0.2s;
+}
+
+.add_todo__button::before {
+    content: '+';
+    
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    
+    color: #df4b40;
+    font-size: 24px;
+
+    margin-right: 5px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    display: inline-block;
+    border-radius: 50%;
+
+    transition: all linear 0.2s;
+}
+
+
+/* Todos List */
+
+.todo__item {
+    position: relative;
+    
+    margin: 10px 0;
+    padding-left: 40px;
+}
+
+.todo__item:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+
+    background: #eee;
+
+    margin: 10px 0;
+}
+
+.todo__item:before {
+    content: '';
+    display: block;
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.todo__item.todo__item--checked:before {
+    content: 'X';
+}
+
+.todo__title {
+    font-weight: 600;
+    text-transform: capitalize;
+
+    font-size: 18px;
+}
+
+.todo__date {
+    color: #6db272;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.todo__description {
+    margin: 5px 0;
+}
+
+.todo__date span {
+    font-weight: 600;
+
+    margin-right: 5px;
+}
