@@ -22,7 +22,12 @@ const todoManager = (function() {
         return todo;
     }
 
-    return { createTodo };
+    function changedTodoChecked(projectId, todoId) {
+        const project = projectList[projectId];
+        project.todoList[todoId].changeMarked();
+    }
+
+    return { createTodo, changedTodoChecked };
 })();
 
 const domManager = (function() {
@@ -31,15 +36,37 @@ const domManager = (function() {
 
     function displayTodo(todo) {
         const todoItem = `
-                <div class="todo__item">
+                <div class="todo__item ${ todo.checked ? 'todo__item--checked' : '' }">
+                    <span class="todo__checked" ></span>
                     <div class="todo__title">${todo.title}</div>
                     <div class="todo__description">${todo.description}</div>
                     <div class="todo__date"><span><i class="fa-solid fa-clock"></i></span>${todo.dueDate}</div>
                 </div>
         `;
+
         const el = document.createElement('div');
         el.innerHTML = todoItem;
+
+        const todoChecked = el.querySelector('.todo__checked');
+
+        todoChecked.addEventListener('click', (e) => {
+            // domManager.changedTodoChecked()
+            console.log('change todoChecked');
+        });
+
         todos.appendChild(el);
+    }
+
+    function changeSelectedProject(projectItem, index) {
+        let previousSelected = document.querySelectorAll('.project__item--selected');
+            previousSelected.forEach(el => {
+                el.classList.remove('project__item--selected');
+            });
+
+            projectManager.selectProject(index);
+            projectItem.innerHTML = `
+                <li class="project__item project__item--selected"><a href="#">${projectList[index].name}</a></li>
+            `;
     }
 
     function displayProject(project, index) {
@@ -49,15 +76,7 @@ const domManager = (function() {
         `;
 
         projectItem.addEventListener('click', (e) => {
-            let previousSelected = document.querySelectorAll('.project__item--selected');
-            previousSelected.forEach(el => {
-                el.classList.remove('project__item--selected');
-            });
-
-            projectManager.selectProject(index);
-            projectItem.innerHTML = `
-                <li class="project__item project__item--selected"><a href="#">${project.name}</a></li>
-            `;
+            changeSelectedProject(projectItem, index);
         });
 
         projects.appendChild(projectItem);
@@ -118,12 +137,16 @@ const projectManager = (function() {
 
     function createProject(projectName) {
         const newProject = new Project(projectName);
+        
         projectList.push(newProject);
+
         if(projectList.length === 1) {
             selectProject(0);
         }
+
         console.log(projectList);
         domManager.displayProjectList();
+        
     }
 
     function selectProject(projectId) {

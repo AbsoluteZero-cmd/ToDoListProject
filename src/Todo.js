@@ -6,8 +6,8 @@ class Todo{
         this.checked = false;
     };
 
-    complete() {
-        this.checked = true;
+    changeMarked() {
+        this.checked = !this.checked;
     }
 }
 
