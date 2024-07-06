@@ -146,9 +146,10 @@ const domManager = (function() {
             let todoDueDate = document.querySelector('#todoDueDate').value;
             if(!validator.isEmpty(todoTitle)){
                 const newTodo = todoManager.createTodo(todoTitle, todoDescription, todoDueDate);
-                projectManager.addToSelectedProject(newTodo);
+                if(projectList.length > 0) projectManager.addToSelectedProject(newTodo);
+                else alert('Cannot add since no projects here');
             }
-            else console.log('error, the todo title cannot be empty');
+            else alert('Cannot create empty title todo');
         });
     }
 
@@ -157,13 +158,6 @@ const domManager = (function() {
 
 const projectManager = (function() {
     let selectedProjectId = projectList.length > 0 ? 0 : null;
-
-    function showList() {
-        for(let i = 0; i < projectList.length; i++){
-            const project = projectList[i];
-            domManager.displayProject(project);
-        }
-    }
 
     function createProject(projectName) {
         const newProject = new Project(projectName);
@@ -191,7 +185,7 @@ const projectManager = (function() {
         domManager.displayTodosList(selectedProjectId);
     }
 
-    return { showList, createProject, selectProject, addToSelectedProject};
+    return { createProject, selectProject, addToSelectedProject};
 })();
 
 

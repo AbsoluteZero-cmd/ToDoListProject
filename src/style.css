@@ -36,7 +36,9 @@ body {
 }
 
 .add_project__button {
-    display: block;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 
     text-decoration: none;
     color: #c23c2a;
@@ -49,27 +51,15 @@ body {
 
     transition: font-size linear 0.2s;
 
-    margin: 10px 0 20px;
+    margin: 5px 0 10px;
 }
 
-.add_project__button::before {
-    content: '+';
+.add_project__button span {
     
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    
-    color: #fcfaf8;
+    color: #df4b40;
     font-size: 28px;
 
     margin-right: 5px;
-
-    text-align: center;
-    vertical-align: middle;
-
-    display: inline-block;
-    background: #df4b40;
-    border-radius: 50%;
 
     transition: all linear 0.2s;
 }
@@ -174,48 +164,30 @@ body {
 }
 
 .add_todo__button {
-    display: block;
-
-    margin-left: 10px;
-
-
-    padding: 5px 20px 5px 10px;
+    padding: 5px 20px;
     border-radius: 5px;
-
     display: inline-block;
     border: 1px solid #eeeeee;
 
-    margin-top: 10px;
-
     text-decoration: none;
     color: #bbbbbb;
-
-    position: relative;
-
 
     font-size: 16px;
     font-weight: 400;
 
     transition: font-size linear 0.2s;
+    align-items: center;
 }
 
-.add_todo__button::before {
-    content: '+';
-    
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    
+.add_todo__button div {
+    display: inline-block;
+}
+
+.add_todo__button i {
+
     color: #df4b40;
-    font-size: 24px;
 
     margin-right: 5px;
-
-    text-align: center;
-    vertical-align: middle;
-
-    display: inline-block;
-    border-radius: 50%;
 
     transition: all linear 0.2s;
 }
