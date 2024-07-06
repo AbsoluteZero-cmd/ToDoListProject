@@ -184,9 +184,7 @@ body {
 }
 
 .add_todo__button i {
-
     color: #df4b40;
-
     margin-right: 5px;
 
     transition: all linear 0.2s;

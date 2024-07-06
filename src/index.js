@@ -3,7 +3,7 @@ import Todo from "./Todo.js";
 
 import './style.css';
 
-const projectList = [];
+let projectList = JSON.parse(localStorage.getItem('projects')) || [];
 
 const validator = (function() {
     function isEmpty(str) {
@@ -13,6 +13,7 @@ const validator = (function() {
 
     return { isEmpty };
 })();
+
 
 const todoManager = (function() {
 
@@ -27,6 +28,7 @@ const todoManager = (function() {
 
         
         project.todoList[todoId].changeMarked();
+        localStorage.setItem('projects', JSON.stringify(projectList));
 
         const todo = project.todoList[todoId];
         
@@ -74,11 +76,14 @@ const domManager = (function() {
         const todoDeleteBtn = el.querySelector('.todo__button');
         todoDeleteBtn.addEventListener('click', () => {
             projectList[projectId].todoList.splice(todoId, 1);
-
             domManager.displayTodosList(projectId);
+
+            localStorage.setItem('projects', JSON.stringify(projectList));
         });
 
         todos.appendChild(el);
+
+        localStorage.setItem('projects', JSON.stringify(projectList));
     }
 
     function changeSelectedProject(projectItem, index) {
@@ -92,6 +97,8 @@ const domManager = (function() {
         //     <li class="project__item project__item--selected"><a href="#">${projectList[index].name}</a></li>
         // `;
         projectItem.classList.add('project__item--selected');
+
+        localStorage.setItem('projects', JSON.stringify(projectList));
     }
 
     function displayProject(projectId) {
@@ -100,7 +107,6 @@ const domManager = (function() {
         projectItem.innerHTML = `
             <li class="project__item"><a href="#">${project.name}</a><span class="project__delete"><i class="fa-solid fa-trash"></i></span></li>
         `;
-
         projectItem.addEventListener('click', (e) => {
             changeSelectedProject(projectItem, projectId);
         });
@@ -108,15 +114,17 @@ const domManager = (function() {
         const projectDeleteBtn = projectItem.querySelector('.project__delete');
         projectDeleteBtn.addEventListener('click', () => {
             projectList.splice(projectId, 1);
-
+            localStorage.setItem('projects', JSON.stringify(projectList));
             domManager.displayProjectList();
         })
-
         projects.appendChild(projectItem);
+
+        localStorage.setItem('projects', JSON.stringify(projectList));
     }
 
     function displayProjectList() {
         projects.innerHTML = '';
+        localStorage.setItem('projects', JSON.stringify(projectList));
         projectList.forEach((_, projectId) => {
             displayProject(projectId);
         });
@@ -132,6 +140,11 @@ const domManager = (function() {
     }
 
     function initDOM() {
+        projectList = JSON.parse(localStorage.getItem('projects')) || [];
+        console.log(projectList);
+
+        displayProjectList();
+
         let addProjectBtn = document.querySelector('.add_project__button');
         addProjectBtn.addEventListener('click', (e) => {
             let projectName = document.querySelector('#projectTitle').value;
@@ -151,6 +164,8 @@ const domManager = (function() {
             }
             else alert('Cannot create empty title todo');
         });
+
+        
     }
 
     return { displayTodo, displayProject, initDOM, displayProjectList, displayTodosList };
@@ -161,15 +176,14 @@ const projectManager = (function() {
 
     function createProject(projectName) {
         const newProject = new Project(projectName);
-        
         projectList.push(newProject);
-
         if(projectList.length === 1) {
             selectProject(0);
         }
-
         console.log(projectList);
         domManager.displayProjectList();
+
+        localStorage.setItem('projects', JSON.stringify(projectList));
         
     }
 
@@ -183,6 +197,8 @@ const projectManager = (function() {
         let todoList = projectList[selectedProjectId].todoList;
         todoList.push(todo);
         domManager.displayTodosList(selectedProjectId);
+
+        localStorage.setItem('projects', JSON.stringify(projectList));
     }
 
     return { createProject, selectProject, addToSelectedProject};
