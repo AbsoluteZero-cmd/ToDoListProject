@@ -88,21 +88,29 @@ const domManager = (function() {
         });
 
         projectManager.selectProject(index);
-        projectItem.innerHTML = `
-            <li class="project__item project__item--selected"><a href="#">${projectList[index].name}</a></li>
-        `;
+        // projectItem.innerHTML = `
+        //     <li class="project__item project__item--selected"><a href="#">${projectList[index].name}</a></li>
+        // `;
+        projectItem.classList.add('project__item--selected');
     }
 
     function displayProject(projectId) {
         const project = projectList[projectId]
         let projectItem = document.createElement('div');
         projectItem.innerHTML = `
-            <li class="project__item"><a href="#">${project.name}</a></li>
+            <li class="project__item"><a href="#">${project.name}</a><span class="project__delete"><i class="fa-solid fa-trash"></i></span></li>
         `;
 
         projectItem.addEventListener('click', (e) => {
             changeSelectedProject(projectItem, projectId);
         });
+
+        const projectDeleteBtn = projectItem.querySelector('.project__delete');
+        projectDeleteBtn.addEventListener('click', () => {
+            projectList.splice(projectId, 1);
+
+            domManager.displayProjectList();
+        })
 
         projects.appendChild(projectItem);
     }

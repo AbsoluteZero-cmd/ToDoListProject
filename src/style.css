@@ -99,13 +99,16 @@ body {
     margin-bottom: 5px;
 
     transition: all linear 0.2s;
+
+    display: flex;
+    justify-content: space-between;
 }
 
-.project__item.project__item--selected {
+.project__item--selected .project__item {
     background: #fff1e3;
 }
 
-.project__item.project__item--selected a {
+.project__item--selected a {
     text-decoration: none;
     color: #c23c2a;
     
@@ -123,6 +126,16 @@ body {
 }
 
 .project__item:hover a {
+    color: #c23c2a;
+}
+
+.project__delete {
+    color: #df4b40;
+
+    transition: color linear .2s;
+}
+
+.project__delete:hover {
     color: #c23c2a;
 }
 
