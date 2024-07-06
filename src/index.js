@@ -50,6 +50,7 @@ const domManager = (function() {
                     <div class="todo__title">${todo.title}</div>
                     <div class="todo__description">${todo.description}</div>
                     <div class="todo__date"><span><i class="fa-solid fa-clock"></i></span>${todo.dueDate}</div>
+                    <a href="#" class="todo__button">Delete</a>
                 </div>
         `;
 
@@ -59,18 +60,22 @@ const domManager = (function() {
         const todoChecked = el.querySelector('.todo__checked');
 
         todoChecked.addEventListener('click', (e) => {
-            // domManager.changedTodoChecked()
             if(todoManager.changeTodoChecked(projectId, todoId)){
                 el.classList.add('todo__item--checked');
                 todoChecked.textContent = '✔';
-                console.log('change todoChecked true');
             }
             else {
                 el.classList.remove('todo__item--checked');
                 todoChecked.textContent = '';
-                console.log('change todoChecked false');
             }
             
+        });
+
+        const todoDeleteBtn = el.querySelector('.todo__button');
+        todoDeleteBtn.addEventListener('click', () => {
+            projectList[projectId].todoList.splice(todoId, 1);
+
+            domManager.displayTodosList(projectId);
         });
 
         todos.appendChild(el);

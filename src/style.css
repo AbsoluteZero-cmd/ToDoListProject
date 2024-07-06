@@ -48,6 +48,8 @@ body {
     font-size: 16px;
 
     transition: font-size linear 0.2s;
+
+    margin: 10px 0 20px;
 }
 
 .add_project__button::before {
@@ -72,17 +74,17 @@ body {
     transition: all linear 0.2s;
 }
 
-.add_project__button:hover {
+/* .add_project__button:hover {
     font-size: 18px;
-}
+} */
 
-.add_project__button:hover.add_project__button::before{
+/* .add_project__button:hover.add_project__button::before{
     width: 35px;
     height: 35px;
     line-height: 35px;
 
     font-size: 30px;
-}
+} */
 
 .projects {
     margin-top: 20px;
@@ -236,7 +238,7 @@ body {
 
     width: 25px;
     height: 25px;
-    border-radius: 50%;
+    border-radius: 5px;
     border: 1px solid #eee;
     text-align: center;
 
@@ -267,8 +269,23 @@ body {
     color: #bbb;
 }
 
+.todo__date {
+    margin-bottom: 10px;
+}
+
 .todo__date span {
     font-weight: 600;
 
     margin-right: 5px;
+}
+
+.todo__button {
+    text-decoration: none;
+    color: #fcfaf8;
+    font-size: 14px;
+
+    padding: 5px 15px;
+    background: #df4b40;
+
+    border-radius: 5px;
 }
