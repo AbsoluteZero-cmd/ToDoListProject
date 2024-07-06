@@ -22,19 +22,28 @@ const todoManager = (function() {
         return todo;
     }
 
-    function changedTodoChecked(projectId, todoId) {
+    function changeTodoChecked(projectId, todoId) {
         const project = projectList[projectId];
+
+        
         project.todoList[todoId].changeMarked();
+
+        const todo = project.todoList[todoId];
+        
+
+        return todo.checked;
     }
 
-    return { createTodo, changedTodoChecked };
+    return { createTodo, changeTodoChecked };
 })();
 
 const domManager = (function() {
     const projects = document.querySelector('.projects');
     const todos = document.querySelector('.todos__list');
 
-    function displayTodo(todo) {
+    function displayTodo(projectId, todoId) {
+        const todo = projectList[projectId].todoList[todoId];
+
         const todoItem = `
                 <div class="todo__item ${ todo.checked ? 'todo__item--checked' : '' }">
                     <span class="todo__checked" ></span>
@@ -51,7 +60,17 @@ const domManager = (function() {
 
         todoChecked.addEventListener('click', (e) => {
             // domManager.changedTodoChecked()
-            console.log('change todoChecked');
+            if(todoManager.changeTodoChecked(projectId, todoId)){
+                el.classList.add('todo__item--checked');
+                todoChecked.textContent = '✔';
+                console.log('change todoChecked true');
+            }
+            else {
+                el.classList.remove('todo__item--checked');
+                todoChecked.textContent = '';
+                console.log('change todoChecked false');
+            }
+            
         });
 
         todos.appendChild(el);
@@ -59,24 +78,25 @@ const domManager = (function() {
 
     function changeSelectedProject(projectItem, index) {
         let previousSelected = document.querySelectorAll('.project__item--selected');
-            previousSelected.forEach(el => {
-                el.classList.remove('project__item--selected');
-            });
+        previousSelected.forEach(el => {
+            el.classList.remove('project__item--selected');
+        });
 
-            projectManager.selectProject(index);
-            projectItem.innerHTML = `
-                <li class="project__item project__item--selected"><a href="#">${projectList[index].name}</a></li>
-            `;
+        projectManager.selectProject(index);
+        projectItem.innerHTML = `
+            <li class="project__item project__item--selected"><a href="#">${projectList[index].name}</a></li>
+        `;
     }
 
-    function displayProject(project, index) {
+    function displayProject(projectId) {
+        const project = projectList[projectId]
         let projectItem = document.createElement('div');
         projectItem.innerHTML = `
             <li class="project__item"><a href="#">${project.name}</a></li>
         `;
 
         projectItem.addEventListener('click', (e) => {
-            changeSelectedProject(projectItem, index);
+            changeSelectedProject(projectItem, projectId);
         });
 
         projects.appendChild(projectItem);
@@ -84,16 +104,17 @@ const domManager = (function() {
 
     function displayProjectList() {
         projects.innerHTML = '';
-        projectList.forEach((project, index) => {
-            displayProject(project, index);
+        projectList.forEach((_, projectId) => {
+            displayProject(projectId);
         });
     }
 
-    function displayTodosList(project) {
+    function displayTodosList(projectId) {
+        const project = projectList[projectId]
         todos.innerHTML = '';
         const projectTodos = project.todoList;
-        projectTodos.forEach((todo, index) => {
-            displayTodo(todo);
+        projectTodos.forEach((_, todoId) => {
+            displayTodo(projectId, todoId);
         });
     }
 
@@ -124,10 +145,6 @@ const domManager = (function() {
 const projectManager = (function() {
     let selectedProjectId = projectList.length > 0 ? 0 : null;
 
-    function addToList(project) {
-        projectList.push(project);
-    }
-
     function showList() {
         for(let i = 0; i < projectList.length; i++){
             const project = projectList[i];
@@ -151,17 +168,17 @@ const projectManager = (function() {
 
     function selectProject(projectId) {
         selectedProjectId = projectId;
-        domManager.displayTodosList(projectList[selectedProjectId]);
+        domManager.displayTodosList(selectedProjectId);
         console.log(projectList[selectedProjectId]);
     }
 
     function addToSelectedProject(todo) {
         let todoList = projectList[selectedProjectId].todoList;
         todoList.push(todo);
-        domManager.displayTodosList(projectList[selectedProjectId]);
+        domManager.displayTodosList(selectedProjectId);
     }
 
-    return {addToList, showList, createProject, selectProject, addToSelectedProject};
+    return { showList, createProject, selectProject, addToSelectedProject};
 })();
 
 

@@ -228,7 +228,6 @@ body {
 
 /* .todo__item:before */
 .todo__checked {
-    content: '';
     display: block;
 
     position: absolute;
@@ -240,10 +239,13 @@ body {
     border-radius: 50%;
     border: 1px solid #eee;
     text-align: center;
+
+    color: #eee;
 }
 
-.todo__item.todo__item--checked .todo__checked {
-    content: 'X';
+.todo__item--checked .todo__title {
+    text-decoration: line-through underline;
+    color: #eee;
 }
 
 .todo__title {
@@ -261,6 +263,8 @@ body {
 
 .todo__description {
     margin: 5px 0;
+
+    color: #bbb;
 }
 
 .todo__date span {
