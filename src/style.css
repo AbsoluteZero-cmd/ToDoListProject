@@ -1,67 +1,65 @@
 body {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-style: normal;
 
-    color: #212121;
+	color: #212121;
 }
-
 
 *,
 *:after,
 *:before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 .section {
-    display: flex;
-    height: 100vh;
+	display: flex;
+	height: 100vh;
 }
 
 /* Sidebar */
 
 .sidebar {
-    width: 25%;
-    background: #fcfaf8;
-    padding: 30px;
+	width: 25%;
+	background: #fcfaf8;
+	padding: 30px;
 }
 
 .sidebar__title {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .add_project__button {
-    display: flex;
-    justify-content: start;
-    align-items: center;
+	display: flex;
+	justify-content: start;
+	align-items: center;
 
-    text-decoration: none;
-    color: #c23c2a;
+	text-decoration: none;
+	color: #c23c2a;
 
-    position: relative;
+	position: relative;
 
-    font-weight: 600;
+	font-weight: 600;
 
-    font-size: 16px;
+	font-size: 16px;
 
-    transition: font-size linear 0.2s;
+	transition: font-size linear 0.2s;
 
-    margin: 5px 0 10px;
+	margin: 5px 0 10px;
 }
 
 .add_project__button span {
-    
-    color: #df4b40;
-    font-size: 28px;
+	color: #df4b40;
+	font-size: 28px;
 
-    margin-right: 5px;
+	margin-right: 5px;
 
-    transition: all linear 0.2s;
+	transition: all linear 0.2s;
 }
 
 /* .add_project__button:hover {
@@ -77,73 +75,72 @@ body {
 } */
 
 .projects {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .project__item {
-    list-style-type: none;
+	list-style-type: none;
 
-    border-radius: 5px;
-    padding: 5px 10px;
+	border-radius: 5px;
+	padding: 5px 10px;
 
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 
-    transition: all linear 0.2s;
+	transition: all linear 0.2s;
 
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .project__item--selected .project__item {
-    background: #fff1e3;
+	background: #fff1e3;
 }
 
 .project__item--selected a {
-    text-decoration: none;
-    color: #c23c2a;
-    
+	text-decoration: none;
+	color: #c23c2a;
 }
 
 .project__item:hover {
-    background: #fff1e3;
+	background: #fff1e3;
 }
 
 .project__item a {
-    text-decoration: none;
-    color: #212121;
+	text-decoration: none;
+	color: #212121;
 
-    transition: all linear 0.2s;
+	transition: all linear 0.2s;
 }
 
 .project__item:hover a {
-    color: #c23c2a;
+	color: #c23c2a;
 }
 
 .project__delete {
-    color: #df4b40;
+	color: #df4b40;
 
-    transition: color linear .2s;
+	transition: color linear 0.2s;
 }
 
 .project__delete:hover {
-    color: #c23c2a;
+	color: #c23c2a;
 }
 
 /* Todos */
 
 .todos {
-    width: 75%;
-    padding: 30px;
+	width: 75%;
+	padding: 30px;
 }
 
 .todos hr {
-    border: 1px solid #eeeeee;
+	border: 1px solid #eeeeee;
 
-    margin: 20px 0;
+	margin: 20px 0;
 }
 
 .todos__title {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 /* .todos__form * {
@@ -152,123 +149,122 @@ body {
 
 .todos__form input,
 .sidebar input {
-    border: 1px solid #eeeeee;
-    border-radius: 5px;
-    padding: 5px 10px;
+	border: 1px solid #eeeeee;
+	border-radius: 5px;
+	padding: 5px 10px;
 
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-style: normal;
 
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .add_todo__button {
-    padding: 5px 20px;
-    border-radius: 5px;
-    display: inline-block;
-    border: 1px solid #eeeeee;
+	padding: 5px 20px;
+	border-radius: 5px;
+	display: inline-block;
+	border: 1px solid #eeeeee;
 
-    text-decoration: none;
-    color: #bbbbbb;
+	text-decoration: none;
+	color: #bbbbbb;
 
-    font-size: 16px;
-    font-weight: 400;
+	font-size: 16px;
+	font-weight: 400;
 
-    transition: font-size linear 0.2s;
-    align-items: center;
+	transition: font-size linear 0.2s;
+	align-items: center;
 }
 
 .add_todo__button div {
-    display: inline-block;
+	display: inline-block;
 }
 
 .add_todo__button i {
-    color: #df4b40;
-    margin-right: 5px;
+	color: #df4b40;
+	margin-right: 5px;
 
-    transition: all linear 0.2s;
+	transition: all linear 0.2s;
 }
-
 
 /* Todos List */
 
 .todo__item {
-    position: relative;
-    
-    margin: 10px 0;
-    padding-left: 40px;
+	position: relative;
+
+	margin: 10px 0;
+	padding-left: 40px;
 }
 
-.todo__item:after{
-    content: '';
-    display: block;
-    width: 100%;
-    height: 1px;
+.todo__item:after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 1px;
 
-    background: #eee;
+	background: #eee;
 
-    margin: 10px 0;
+	margin: 10px 0;
 }
 
 /* .todo__item:before */
 .todo__checked {
-    display: block;
+	display: block;
 
-    position: absolute;
-    top: 5px;
-    left: 5px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
 
-    width: 25px;
-    height: 25px;
-    border-radius: 5px;
-    border: 1px solid #eee;
-    text-align: center;
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+	text-align: center;
 
-    color: #eee;
+	color: #eee;
 }
 
 .todo__item--checked .todo__title {
-    text-decoration: line-through underline;
-    color: #eee;
+	text-decoration: line-through underline;
+	color: #eee;
 }
 
 .todo__title {
-    font-weight: 600;
-    text-transform: capitalize;
+	font-weight: 600;
+	text-transform: capitalize;
 
-    font-size: 18px;
+	font-size: 18px;
 }
 
 .todo__date {
-    color: #6db272;
-    font-weight: 400;
-    font-size: 14px;
+	color: #6db272;
+	font-weight: 400;
+	font-size: 14px;
 }
 
 .todo__description {
-    margin: 5px 0;
+	margin: 5px 0;
 
-    color: #bbb;
+	color: #bbb;
 }
 
 .todo__date {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .todo__date span {
-    font-weight: 600;
+	font-weight: 600;
 
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .todo__button {
-    text-decoration: none;
-    color: #fcfaf8;
-    font-size: 14px;
+	text-decoration: none;
+	color: #fcfaf8;
+	font-size: 14px;
 
-    padding: 5px 15px;
-    background: #df4b40;
+	padding: 5px 15px;
+	background: #df4b40;
 
-    border-radius: 5px;
+	border-radius: 5px;
 }
